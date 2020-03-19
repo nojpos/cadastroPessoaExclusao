@@ -35,7 +35,7 @@ export class CadastroPessoaComponent implements OnInit {
     let pessoaId = this.listaPessoa.findIndex(cd => cd.id === id);
     this.pessoaExcluída = this.listaPessoa[pessoaId].nome;
     this.listaPessoa.splice(pessoaId, 1);
-    return alert('O registro ' + this.pessoaExcluída + ' Foi excluído com sucesso');
+    alert('O registro ' + this.pessoaExcluída + ' Foi excluído com sucesso');
     this.pessoaExcluída = ''
   }
 }
