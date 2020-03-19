@@ -10,9 +10,11 @@ export class CadastroPessoaComponent implements OnInit {
 
   pessoa: Pessoa = new Pessoa;
   listaPessoa: Pessoa[] = []
+  pessoaExcluída = ''
   constructor() { }
 
   ngOnInit(): void {
+    (document.getElementById('nome') as HTMLElement).focus();
   }
 
   random() {
@@ -21,16 +23,19 @@ export class CadastroPessoaComponent implements OnInit {
 
   adicionar() {
     if (this.pessoa.nome === undefined) {
-      return alert('O campo Nome não foi preenchido')
+      return alert('O campo Nome não foi preenchido');
     }
     this.pessoa.id = this.random()
     this.listaPessoa.push(this.pessoa)
     this.pessoa = new Pessoa;
+    (document.getElementById('nome') as HTMLElement).focus();
   }
 
   excluir(id) {
-    let pessoaId = this.listaPessoa.findIndex(cd => cd.id === id)
-    this.listaPessoa.splice(pessoaId, 1)
+    let pessoaId = this.listaPessoa.findIndex(cd => cd.id === id);
+    this.pessoaExcluída = this.listaPessoa[pessoaId].nome;
+    this.listaPessoa.splice(pessoaId, 1);
+    return alert('O registro ' + this.pessoaExcluída + ' Foi excluído com sucesso');
+    this.pessoaExcluída = ''
   }
-
 }
